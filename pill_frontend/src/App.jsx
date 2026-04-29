@@ -5,7 +5,7 @@ import LoadingState from './components/LoadingState'
 import Results from './components/Results'
 import Footer from './components/Footer'
 
-const API_URL = '/api'
+const API_URL = import.meta.env.VITE_API_URL || 'https://Pjshana-Pill-recognition.hf.space'
 
 function App() {
   const [state, setState] = useState('idle')  // idle | loading | results | error
