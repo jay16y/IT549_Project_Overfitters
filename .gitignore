@@ -1,0 +1,30 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+.Python
+venv/
+env/
+
+# Node
+node_modules/
+dist/
+.next/
+
+# Large model files
+pill_backend/models/best_model.pth
+pill_backend/models/pill_index.faiss
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env
+.env
+.env.local
