@@ -98,11 +98,15 @@ IT549_Project_Overfitters/
 │   │   ├── index_metadata.csv     # Pill metadata
 │   │   └── reference_mapping.csv  # Reference image mapping
 │   ├── run.py                     # Server entry point
-│   └── requirements.txt
+│   ├── requirements.txt
+|   ├── test_api.py
+|   |__ enrich_metadata
 │
 ├── pill_frontend/                 # React frontend
 │   ├── src/
 │   │   ├── App.jsx
+|   |   ├── index.css
+|   |   ├── main.jsx
 │   │   └── components/
 │   │       ├── Header.jsx
 │   │       ├── UploadZone.jsx     # Drag & drop + camera capture
@@ -111,6 +115,10 @@ IT549_Project_Overfitters/
 │   │       └── Footer.jsx
 │   ├── package.json
 │   └── vite.config.js
+|   |__ index.html
+|   |__ tailwind.config.js
+|   |__ postcss.config.js
+|   |__ package-lock.js
 │
 ├── Dockerfile                     # HuggingFace Spaces deployment
 └── README.md
