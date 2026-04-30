@@ -38,6 +38,10 @@ function formatColors(colors) {
 
 function ResultCard({ result, index }) {
   const isTop = index === 0
+  const hasRefImage = result.ref_image_url &&
+    result.ref_image_url !== '' &&
+    result.ref_image_url !== 'nan' &&
+    result.ref_image_url !== 'undefined'
 
   return (
     <div
@@ -51,11 +55,11 @@ function ResultCard({ result, index }) {
       `}
     >
       <div className="p-5 sm:p-6">
-        {/* Top row: rank + similarity */}
+        {/* Top row: rank + name + similarity badge */}
         <div className="flex items-start justify-between mb-4">
           <div className="flex items-center gap-3">
             <span className={`
-              w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold
+              w-8 h-8 rounded-lg flex items-center justify-center text-sm font-bold flex-shrink-0
               ${isTop
                 ? 'bg-pill-600 text-white'
                 : 'bg-surface-100 text-surface-800'
@@ -76,11 +80,28 @@ function ResultCard({ result, index }) {
           </div>
 
           {isTop && (
-            <span className="px-2.5 py-1 bg-pill-50 text-pill-700 text-xs font-bold rounded-lg uppercase tracking-wide">
+            <span className="px-2.5 py-1 bg-pill-50 text-pill-700 text-xs font-bold rounded-lg uppercase tracking-wide flex-shrink-0">
               Best Match
             </span>
           )}
         </div>
+
+        {/* Reference image */}
+        {hasRefImage && (
+          <div className="mb-4 flex justify-center">
+            <div className="relative">
+              <img
+                src={result.ref_image_url}
+                alt={result.drug_name}
+                className="w-36 h-36 object-contain rounded-xl border border-surface-100 bg-surface-50"
+                onError={(e) => { e.target.parentElement.style.display = 'none' }}
+              />
+              <span className="absolute bottom-1 right-1 text-xs bg-black/50 text-white px-1.5 py-0.5 rounded-md">
+                Reference
+              </span>
+            </div>
+          </div>
+        )}
 
         {/* Similarity bar */}
         <div className="mb-4">
@@ -102,7 +123,7 @@ function ResultCard({ result, index }) {
 
         {/* Pill details grid */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-          {result.shape && result.shape !== '' && (
+          {result.shape && result.shape !== '' && result.shape !== 'nan' && (
             <div className="bg-surface-50 rounded-lg p-2.5">
               <div className="flex items-center gap-1.5 text-surface-300 mb-1">
                 {getShapeIcon(result.shape)}
@@ -114,7 +135,7 @@ function ResultCard({ result, index }) {
             </div>
           )}
 
-          {result.colors && result.colors !== '' && result.colors !== '[]' && (
+          {result.colors && result.colors !== '' && result.colors !== '[]' && result.colors !== 'nan' && (
             <div className="bg-surface-50 rounded-lg p-2.5">
               <div className="flex items-center gap-1.5 text-surface-300 mb-1">
                 <div className="w-4 h-4 rounded-full bg-gradient-to-br from-red-400 via-blue-400 to-green-400" />
@@ -126,7 +147,7 @@ function ResultCard({ result, index }) {
             </div>
           )}
 
-          {result.imprint && result.imprint !== '' && (
+          {result.imprint && result.imprint !== '' && result.imprint !== 'nan' && (
             <div className="bg-surface-50 rounded-lg p-2.5">
               <div className="flex items-center gap-1.5 text-surface-300 mb-1">
                 <span className="text-xs">🔤</span>
@@ -138,7 +159,7 @@ function ResultCard({ result, index }) {
             </div>
           )}
 
-          {result.size_mm && result.size_mm !== '' && (
+          {result.size_mm && result.size_mm !== '' && result.size_mm !== 'nan' && (
             <div className="bg-surface-50 rounded-lg p-2.5">
               <div className="flex items-center gap-1.5 text-surface-300 mb-1">
                 <span className="text-xs">📏</span>
