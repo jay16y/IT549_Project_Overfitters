@@ -87,6 +87,8 @@ class PillRecognitionEngine:
                     "colors"     : str(row.get("colors", "")),
                     "imprint"  : str(row.get("imprint", "")),
                     "size_mm"  : str(row.get("size_mm", "")),
+                    "ref_image_url": str(row.get("ref_image_url", "")),
+                    
                 }
             print(f"  Pill info: {len(self.pill_info)} pills")
         except Exception as e:
@@ -156,6 +158,7 @@ class PillRecognitionEngine:
                 "colors": info.get("colors", ""),
                 "imprint": info.get("imprint", ""),
                 "size_mm": info.get("size_mm", ""),
+                "ref_image_url": info.get("ref_image_url",""),
             }
             results.append(result)
 
